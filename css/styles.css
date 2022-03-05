@@ -111,10 +111,26 @@ address {
 }
 
 .nav-menu-list .link {
+    position: relative;
     display: block;
     padding: 32px 0;
 }
 
+.nav-menu-list .link::after {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 4px;
+    border-radius: 2px;
+    background-color: var(--selected-button-background);
+    opacity: 0;
+}
+
+.nav-menu-list .link:hover::after {
+    opacity: 1;
+}
 .contact-links-list .link {
     display: inline-flex;
     align-items: center;
@@ -278,9 +294,30 @@ address {
     margin: -15px;
 }
 
-.whatWeDoing-list li {
+.whatWeDoing-list .whatWeDoing-item {
+    position: relative;
     margin: 15px;
 }
+
+.whatWeDoing-item img {
+    display: block;
+    height: 100%;
+}
+
+.whatWeDoing-item .whatWeDoing-description {
+    position: absolute;
+    bottom: 0;
+    font-size: 14px;
+    color: var(--secondary-text-color);
+    line-height: 1.14;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    background-color: rgba(47, 48, 58, 0.8);
+    width: 100%;
+    text-align: center;
+    padding: 27px 0;
+}
+
 
 /* Our team section styles */
 .team-section {
@@ -516,8 +553,28 @@ address {
 }
 
 .project-item img {
-    max-width: 100%;
+    display: block;
 }
+
+.project-item .project-picture-thumb {
+    position: relative;
+    overflow: hidden;
+}
+
+.project-picture-thumb .project-item-text {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    padding: 63px 24px;
+    background-color: rgba(33, 150, 243, 0.9);
+    line-height: 1.55;
+    font-size: 18px;
+    color: var(--secondary-text-color);
+    font-weight: 400;
+    letter-spacing: 0.03em;
+}
+
 .project-item:hover {
     box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12),
                 0px 4px 4px rgba(0, 0, 0, 0.06),
