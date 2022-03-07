@@ -114,9 +114,10 @@ address {
     position: relative;
     display: block;
     padding: 32px 0;
+    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.nav-menu-list .link::after {
+.nav-menu-list .link.active-link::after {
     content: '';
     display: block;
     position: absolute;
@@ -125,12 +126,9 @@ address {
     height: 4px;
     border-radius: 2px;
     background-color: var(--selected-button-background);
-    opacity: 0;
 }
 
-.nav-menu-list .link:hover::after {
-    opacity: 1;
-}
+
 .contact-links-list .link {
     display: inline-flex;
     align-items: center;
@@ -182,14 +180,14 @@ address {
     margin-right: 10px;
 }
 
+.header .contact-link {
+    color: var(--primary-text-color);
+    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 .header .contact-link:hover,
 .header .contact-link:focus {
     color: var(--accent-text-color);
-}
-
-.header .contact-link {
-    color: var(--primary-text-color);
-
 }
 
 /* hero styles */
@@ -228,6 +226,7 @@ address {
     color: var(--secondary-text-color);
     line-height: 1.75;
     font-size: 16px;
+    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .hero-button:hover, 
 .hero-button:focus {
@@ -282,6 +281,7 @@ address {
     font-weight: 400;
     line-height: 1.7;
 }
+
 /* what we doing */
 .page-section.whatWeDoing-section {
     padding-top: 0;
@@ -377,6 +377,8 @@ address {
 .member-socialLink-item .member-socialLink {
     display: inline-flex;
     border-radius: 50%;
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+                fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .member-socialLink-item .member-socialLink:hover {
@@ -384,12 +386,15 @@ address {
     fill: #FFFFFF;
 }
 
+.member-socialLink-icon {
+    fill: #AFB1B8;
+    transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 .member-socialLink-item .member-socialLink:hover .member-socialLink-icon {
     fill: #FFFFFF;
 }
-.member-socialLink-icon {
-    fill: #AFB1B8;
-}
+
 /* Regular customers styles */
 .customers-section .customers-list {
     justify-content:center;
@@ -404,6 +409,8 @@ address {
     border: 1px solid #AFB1B8;
     border-radius: 4px;
     fill: #AFB1B8;
+    transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1),
+                border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .customers-list .customer-link-icon:hover {
@@ -449,6 +456,7 @@ address {
     background-color: rgba(255, 255, 255, 0.1);
     background-repeat: no-repeat;
     background-position: center;
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .social-link-item .solial-link:hover:before {
@@ -496,6 +504,7 @@ address {
 .footer-contacts .contact-link {
     color: rgba(255, 255, 255, 0.6);
     font-weight: 400;
+    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .footer-contacts .contact-link:hover,
@@ -524,11 +533,15 @@ address {
     padding: 6px 22px;
     text-align: center;
     cursor: pointer;
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+                color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+                border 250ms cubic-bezier(0.4, 0, 0.2, 1),
+                box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .filters-list .filter-button:hover,
 .filters-list .filter-button:focus {
-    background: var(--selected-button-background);
+    background-color: var(--selected-button-background);
     color: var(--secondary-text-color);
     border: 1px solid var(--selected-button-background);
     box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.1), 0px 1px 2px rgba(0, 0, 0, 0.08), 0px 2px 2px rgba(0, 0, 0, 0.12);
@@ -546,6 +559,7 @@ address {
     max-width: calc((100% - 60px)/3);
     border: 1px solid #EEEEEE;
     overflow: hidden;
+    transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .project-item:nth-child(3n) {
@@ -573,12 +587,18 @@ address {
     color: var(--secondary-text-color);
     font-weight: 400;
     letter-spacing: 0.03em;
+    transform: translate(0, 100%);
+    transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .project-item:hover {
     box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12),
                 0px 4px 4px rgba(0, 0, 0, 0.06),
                 1px 4px 6px rgba(0, 0, 0, 0.16);
+}
+
+.project-item:hover .project-item-text {
+    transform: translate(0, 0);
 }
 
 .project-description {
@@ -596,4 +616,65 @@ address {
     line-height: 1.8;
     font-weight: 400;
     color: var(--primary-text-color);
+}
+
+
+/* modal window styles */
+.backdrop.is-hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.backdrop.is-hidden .modal {
+    transform: translate(-50%, -50%) scale(0);
+}
+
+.backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.2);
+    transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.backdrop .modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    min-width: 528px;
+    min-height: 581px;
+
+    background-color: var(--primary-background-color);
+
+    transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modal .close-button {
+    position: absolute;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    top: 8px;
+    right: 8px;
+    background-color: rgba(0, 0, 0, 0.0);
+    width: 30px;
+    height: 30px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    text-align: center;
+    transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modal .close-button:hover {
+    border-color: var(--selected-button-background);
+}
+.close-button-icon {
+    transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.modal .close-button:hover .close-button-icon {
+    fill: var(--selected-button-background);
 }
